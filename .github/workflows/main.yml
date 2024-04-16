@@ -41,7 +41,6 @@ jobs:
             -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
             -e MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} \
             -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
-            --depends-on-service db \
             --build . -f Dockerfile mlflow server --host 0.0.0.0 --backend-store-uri mysql+pymysql://${{ secrets.MYSQL_USER }}:${{ secrets.MYSQL_PASSWORD }}@db/${{ secrets.MYSQL_DATABASE }} --default-artifact-root s3://mlflow-artifacts
 
   
