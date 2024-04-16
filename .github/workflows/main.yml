@@ -28,7 +28,7 @@ jobs:
           if [ ! -d "app" ]; then
             mkdir app
             cd app
-            git clone https://github.com/redhox/labeling_mlflow.git .
+            git clone https://github.com/redhox/mlflow_deploiment.git .
           else
             cd app
             git pull origin main
