@@ -25,6 +25,15 @@ jobs:
           sudo apt update && sudo apt upgrade -y
           sudo apt-get install -y docker.io docker-compose
           sudo systemctl restart docker.service
+          if [ ! -d "app" ]; then
+            mkdir app
+            cd app
+            git clone https://github.com/redhox/labeling_mlflow.git .
+          else
+            cd app
+            git pull origin main
+          fi 
+          
           sudo docker run --rm -d \
             -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
             -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
