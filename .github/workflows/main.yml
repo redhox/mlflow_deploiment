@@ -29,10 +29,23 @@ jobs:
             mkdir app
             cd app
             git clone https://github.com/redhox/mlflow_deploiment.git .
-            sudo docker-compose up -d
+            # sudo docker-compose up -d
+            sudo docker-compose up -d \
+              -e MYSQL_USER=${MYSQL_USER} \
+              -e MYSQL_DATABASE=${MYSQL_DATABASE} \
+              -e MYSQL_PASSWORD=${MYSQL_PASSWORD} \
+              -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
+              -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
+              -e MLFLOW_S3_ENDPOINT_URL=${MLFLOW_S3_ENDPOINT_URL}
           else
             cd app
             sudo docker-compose down
             git pull origin main
             sudo docker-compose up -d --build
+              -e MYSQL_USER=${MYSQL_USER} \
+              -e MYSQL_DATABASE=${MYSQL_DATABASE} \
+              -e MYSQL_PASSWORD=${MYSQL_PASSWORD} \
+              -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
+              -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
+              -e MLFLOW_S3_ENDPOINT_URL=${MLFLOW_S3_ENDPOINT_URL}
           fi 
