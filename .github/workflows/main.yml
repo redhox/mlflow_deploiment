@@ -33,6 +33,7 @@ jobs:
             cd app
             git pull origin main
           fi 
+          sudo docker network rm mlflow_network
           sudo docker network create mlflow_network
           sudo docker run --rm -d \
             --network mlflow_network \          
