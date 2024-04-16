@@ -25,14 +25,14 @@ jobs:
           sudo apt update && sudo apt upgrade -y
           sudo apt-get install -y docker.io docker-compose
           sudo systemctl restart docker.service
-          docker run --rm \
+          sudo docker run --rm \
             -e MYSQL_DATABASE=${MYSQL_DATABASE} \
             -e MYSQL_USER=${MYSQL_USER} \
             -e MYSQL_PASSWORD=${MYSQL_PASSWORD} \
             -v dbdata:/var/lib/mysql \
             --name db \
             mysql:5.7
-          docker run --rm \
+          sudo docker run --rm \
             -p 5000:5000 \
             -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
             -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
