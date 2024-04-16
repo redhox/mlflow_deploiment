@@ -39,7 +39,6 @@ jobs:
             -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
             -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
             -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
-            -e MYSQL_ROOT_PASSWORD="bonjour" \
             -v dbdata:/var/lib/mysql \
             --name db \
             mysql:5.7 
@@ -51,7 +50,6 @@ jobs:
             -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
             -e MLFLOW_S3_ENDPOINT_URL=${{ secrets.MLFLOW_S3_ENDPOINT_URL }} \
             -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
-            -e MYSQL_ROOT_PASSWORD="bonjour" \
             -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
             --name mlflow \
             mlflow_server mlflow server --host 0.0.0.0 --backend-store-uri mysql+pymysql://${{ secrets.MYSQL_USER }}:${{ secrets.MYSQL_PASSWORD }}@db/${{ secrets.MYSQL_DATABASE }} --default-artifact-root s3://mlflow-artifacts
