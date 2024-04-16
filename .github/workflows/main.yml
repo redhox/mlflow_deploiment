@@ -33,8 +33,9 @@ jobs:
             cd app
             git pull origin main
           fi 
-          
+          sudo docker network create mlflow_network
           sudo docker run --rm -d \
+            --network mlflow_network \          
             -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
             -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
             -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
@@ -44,6 +45,7 @@ jobs:
             mysql:5.7 
           sudo docker build -t mlflow_server -f ./Dockerfile .
           sudo docker run --rm \
+            --network mlflow_network \
             -p 5000:5000 \
             -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
             -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
