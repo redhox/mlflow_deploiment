@@ -1,4 +1,4 @@
-.env
+.env 
 
     MLFLOW_S3_ENDPOINT_URL
     AWS_SECRET_ACCESS_KEY
