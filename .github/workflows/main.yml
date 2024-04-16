@@ -26,21 +26,21 @@ jobs:
           sudo apt-get install -y docker.io docker-compose
           sudo systemctl restart docker.service
           sudo docker run --rm \
-            -e MYSQL_DATABASE=${MYSQL_DATABASE} \
-            -e MYSQL_USER=${MYSQL_USER} \
-            -e MYSQL_PASSWORD=${MYSQL_PASSWORD} \
+            -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
+            -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
+            -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
             -v dbdata:/var/lib/mysql \
             --name db \
             mysql:5.7
           sudo docker run --rm \
             -p 5000:5000 \
-            -e AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} \
-            -e AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} \
-            -e MLFLOW_S3_ENDPOINT_URL=${MLFLOW_S3_ENDPOINT_URL} \
-            -e MYSQL_USER=${MYSQL_USER} \
-            -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
-            -e MYSQL_DATABASE=${MYSQL_DATABASE} \
+            -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID} } \
+            -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
+            -e MLFLOW_S3_ENDPOINT_URL=${{ secrets.MLFLOW_S3_ENDPOINT_URL }} \
+            -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
+            -e MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} \
+            -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
             --depends-on-service db \
-            --build . -f Dockerfile mlflow server --host 0.0.0.0 --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_ROOT_PASSWORD}@db/${MYSQL_DATABASE} --default-artifact-root s3://mlflow-artifacts
+            --build . -f Dockerfile mlflow server --host 0.0.0.0 --backend-store-uri mysql+pymysql://${{ secrets.MYSQL_USER }}:${{ secrets.MYSQL_PASSWORD }}@db/${{ secrets.MYSQL_DATABASE }} --default-artifact-root s3://mlflow-artifacts
 
   
