@@ -53,6 +53,8 @@ jobs:
             -e MLFLOW_S3_ENDPOINT_URL=${{ secrets.MLFLOW_S3_ENDPOINT_URL }} \
             -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
             -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
+            -e MLFLOW_TRACKING_USERNAME=user1 \
+            -e MLFLOW_TRACKING_PASSWORD=password1 \
             --name mlflow \
             mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0 --backend-store-uri mysql+pymysql://${{ secrets.MYSQL_USER }}:${{ secrets.MYSQL_PASSWORD }}@db/${{ secrets.MYSQL_DATABASE }} --default-artifact-root s3://mlflow-artifacts
   
