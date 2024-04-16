@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: server --host 0.0.0.0 --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_ROOT_PASSWORD}@db/${MYSQL_DATABASE} --default-artifact-root s3://mlflow-artifacts
+    command: mlflow server --host 0.0.0.0 --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_ROOT_PASSWORD}@db/${MYSQL_DATABASE} --default-artifact-root s3://mlflow-artifacts
     ports:
       - "5000:5000"
     environment:
