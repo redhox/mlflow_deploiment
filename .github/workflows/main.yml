@@ -44,16 +44,16 @@ jobs:
               -v dbdata:/var/lib/mysql \
               --name db \
               mysql:5.7
-          # sudo docker build -t mlflow_server -f ./Dockerfile .
-          # sudo docker run --rm -d \
-          #   --network mlflow_network \
-          #   -p 5000:5000 \
-          #   -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
-          #   -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
-          #   -e MLFLOW_S3_ENDPOINT_URL=${{ secrets.MLFLOW_S3_ENDPOINT_URL }} \
-          #   -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
-          #   -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
-          #   --name mlflow \
-          #   mlflow_server mlflow server --host 0.0.0.0 --backend-store-uri mysql+pymysql://${{ secrets.MYSQL_USER }}:${{ secrets.MYSQL_PASSWORD }}@db/${{ secrets.MYSQL_DATABASE }} --default-artifact-root s3://mlflow-artifacts
+          sudo docker build -t mlflow_server -f ./Dockerfile .
+          sudo docker run --rm -d \
+            --network mlflow_network \
+            -p 5000:5000 \
+            -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
+            -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
+            -e MLFLOW_S3_ENDPOINT_URL=${{ secrets.MLFLOW_S3_ENDPOINT_URL }} \
+            -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
+            -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
+            --name mlflow \
+            mlflow_server mlflow server --host 0.0.0.0 --backend-store-uri mysql+pymysql://${{ secrets.MYSQL_USER }}:${{ secrets.MYSQL_PASSWORD }}@db/${{ secrets.MYSQL_DATABASE }} --default-artifact-root s3://mlflow-artifacts
 
   
