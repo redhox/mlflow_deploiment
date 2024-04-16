@@ -42,7 +42,7 @@ jobs:
             -v dbdata:/var/lib/mysql \
             --name db \
             mysql:5.7 
-          docker build -t mlflow_server -f Dockerfile .
+          docker build -t mlflow_server -f .
           sudo docker run --rm \
             -p 5000:5000 \
             -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
