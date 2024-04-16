@@ -44,7 +44,7 @@ jobs:
             --name db \
             mysql:5.7 
           sudo docker build -t mlflow_server -f ./Dockerfile .
-          sudo docker run --rm \
+          sudo docker run --rm -d \
             --network mlflow_network \
             -p 5000:5000 \
             -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
@@ -53,6 +53,7 @@ jobs:
             -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
             -e MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }} \
             -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
+            --name db \
             mlflow_server mlflow server --host 0.0.0.0 --backend-store-uri mysql+pymysql://${{ secrets.MYSQL_USER }}:${{ secrets.MYSQL_PASSWORD }}@db/${{ secrets.MYSQL_DATABASE }} --default-artifact-root s3://mlflow-artifacts
 
   
