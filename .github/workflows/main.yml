@@ -36,14 +36,14 @@ jobs:
           sudo docker network rm mlflow_network
           sudo docker network create mlflow_network
           sudo docker run --rm -d \
-            --network mlflow_network \          
-            -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
-            -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
-            -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
-            -e MYSQL_ROOT_PASSWORD=bonjour \
-            -v dbdata:/var/lib/mysql \
-            --name db \
-            mysql:5.7 
+              --network mlflow_network \
+              -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
+              -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
+              -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
+              -e MYSQL_ROOT_PASSWORD=bonjour \
+              -v dbdata:/var/lib/mysql \
+              --name db \
+              mysql:5.7
           # sudo docker build -t mlflow_server -f ./Dockerfile .
           # sudo docker run --rm -d \
           #   --network mlflow_network \
