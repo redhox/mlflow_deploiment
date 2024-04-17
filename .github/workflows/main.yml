@@ -32,7 +32,16 @@ jobs:
           else
             cd app
             git pull origin main
-          fi 
+          fi
+
+
+          sudo docker network inspect mlflow_network &> /dev/null
+          if [ $? -eq 0 ]; then
+            echo "Le réseau Docker mlflow_network existe déjà."
+          else
+            sudo docker network create mlflow_network
+          fi
+          
           sudo docker network create mlflow_network
           sudo docker run --rm -d \
               --network mlflow_network \
