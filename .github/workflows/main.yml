@@ -52,4 +52,4 @@ jobs:
             -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
             -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
             --name mlflow \
-            mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0:5000 --backend-store-uri   postgres://postgres.lfgchqvfomoylwuarpvk:${{ secrets.POSTGRES_PASSWORD }}@aws-0-eu-west-2.pooler.supabase.com:5432/postgres --default-artifact-root s3://mlflow-artifacts
+            mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0:5000 --backend-store-uri   postgresql://postgres.lfgchqvfomoylwuarpvk:${{ secrets.POSTGRES_PASSWORD }}@aws-0-eu-west-2.pooler.supabase.com:5432/postgres --default-artifact-root s3://mlflow-artifacts
