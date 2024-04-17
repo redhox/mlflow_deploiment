@@ -51,7 +51,7 @@ jobs:
           #     -v dbdata:/var/lib/mysql \
           #     --name db \
           #     mysql:5.7
-          sudo docker run --rm \
+          sudo docker run --rm -d \
             --network mlflow_network \
             -p 5000:5000 \
             -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
