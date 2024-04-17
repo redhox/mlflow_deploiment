@@ -62,5 +62,5 @@ jobs:
             -e MLFLOW_TRACKING_USERNAME=user1 \
             -e MLFLOW_TRACKING_PASSWORD=password1 \
             --name mlflow \
-            mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0 --backend-store-uri mysql://${{ secrets.MYSQL_USER }}:${{ secrets.MYSQL_PASSWORD }}@db/${{ secrets.MYSQL_DATABASE }} --default-artifact-root s3://mlflow-artifacts
-  
+            # mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0 --backend-store-uri mysql://${{ secrets.MYSQL_USER }}:${{ secrets.MYSQL_PASSWORD }}@db/${{ secrets.MYSQL_DATABASE }} --default-artifact-root s3://mlflow-artifacts
+            # mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0 --backend-store-uri   postgres://postgres.lfgchqvfomoylwuarpvk:${{ secrets.POSTGRES_PASSWORD }}@aws-0-eu-west-2.pooler.supabase.com:5432/postgres --default-artifact-root s3://mlflow-artifacts
