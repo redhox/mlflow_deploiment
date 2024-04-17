@@ -41,8 +41,6 @@ jobs:
           else
             sudo docker network create mlflow_network
           fi
-          
-          sudo docker network create mlflow_network
           sudo docker run --rm -d \
               --network mlflow_network \
               -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
