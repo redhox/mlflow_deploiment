@@ -33,7 +33,6 @@ jobs:
             cd app
             git pull origin main
           fi 
-          sudo docker network rm mlflow_network
           sudo docker network create mlflow_network
           sudo docker run --rm -d \
               --network mlflow_network \
@@ -43,7 +42,7 @@ jobs:
               -e MYSQL_ROOT_PASSWORD=bonjour \
               -v dbdata:/var/lib/mysql \
               --name db \
-              mysql:5.7
+              mysql
           sudo docker build -t mlflow_server -f ./Dockerfile .
           sudo docker run --rm -d \
             --network mlflow_network \
