@@ -35,5 +35,5 @@ jobs:
             -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
             -e MLFLOW_S3_ENDPOINT_URL=${{ secrets.MLFLOW_S3_ENDPOINT_URL }} \
             --name mlflow \
-            mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0:5000 --backend-store-uri   postgresql://postgres.lfgchqvfomoylwuarpvk:${{ secrets.POSTGRES_PASSWORD }}@aws-0-eu-west-2.pooler.supabase.com:5432/postgres --default-artifact-root s3://mlflow-artifacts
+            mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0:5000 --backend-store-uri   postgresql://postgres.eiwwdyxgmpikwfklghfv:${{ secrets.POSTGRES_PASSWORD }}@aws-0-eu-west-2.pooler.supabase.com:5432/postgres --default-artifact-root s3://mlflow-artifacts
           sudo docker ps
