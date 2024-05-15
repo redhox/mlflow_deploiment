@@ -28,7 +28,6 @@ jobs:
             cd app
             git pull origin main
           fi
-
           sudo docker build -t mlflow_server -f ./Dockerfile .
           sudo docker run --rm -d \
             -p 80:5000 \
