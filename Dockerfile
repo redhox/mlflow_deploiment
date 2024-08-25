@@ -4,7 +4,7 @@ WORKDIR /app
 
 # COPY requirements.txt ./
 # RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install mlflow boto3 awscli setuptools mysqlclient psycopg2
+RUN pip install mlflow boto3 awscli setuptools mysqlclient psycopg2 gunicorn
 
 # pymysql
 
