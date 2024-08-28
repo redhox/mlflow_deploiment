@@ -18,22 +18,21 @@ jobs:
         username: ${{ secrets.VPS_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          sudo apt update && sudo apt-get install -y docker.io docker-compose
-          sudo systemctl restart docker.service
-          if [ ! -d "app" ]; then
-            mkdir app
-            cd app
+
+          if [ ! -d "mlflow" ]; then
+            mkdir mlflow
+            cd mlflow
             git clone https://github.com/redhox/mlflow_deploiment.git .
           else
-            cd app
+            cd mlflow
             git pull origin main
           fi
-          sudo docker build -t mlflow_server -f ./Dockerfile .
-          sudo docker run -d \
+          docker build -t mlflow_server -f ./Dockerfile .
+          docker run -d \
             -p 5000:5000 \
             -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
             -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
             -e MLFLOW_S3_ENDPOINT_URL=${{ secrets.MLFLOW_S3_ENDPOINT_URL }} \
             --name mlflow \
-            mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0:5000 --backend-store-uri   postgresql://postgres.eiwwdyxgmpikwfklghfv:'${{ secrets.POSTGRES_PASSWORD }}'@aws-0-eu-west-2.pooler.supabase.com:6543/postgres --default-artifact-root s3://mlflow-artifacts
+            mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0:5000 --backend-store-uri   postgresql://postgres.user:'${{ secrets.POSTGRES_PASSWORD }}'@91.165.239.121:6543/postgres --default-artifact-root s3://mlflow-artifacts
           sudo docker ps
