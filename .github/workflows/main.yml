@@ -35,4 +35,4 @@ jobs:
             -e AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
             -e MLFLOW_S3_ENDPOINT_URL=${{ secrets.MLFLOW_S3_ENDPOINT_URL }} \
             --name mlflow \
-            mlflow_server mlflow server  --host 0.0.0.0:5000 --backend-store-uri   postgresql://user:passwd@91.165.239.121:5432/postgres --default-artifact-root s3://mlflow-artifacts
+            mlflow_server mlflow server  --host 0.0.0.0:5000 --backend-store-uri   postgresql://user:passwd@91.165.239.121:5432/postgres --default-artifact-root s3://mlflow-artifacts  --auth-provider mlflow.server.auth.sqlalchemy_provider.SqlAlchemyAuthProvider
