@@ -25,6 +25,7 @@ jobs:
             git clone https://github.com/redhox/mlflow_deploiment.git .
           else
             cd mlflow
+            docker stop mlflow_server
             git pull origin main
           fi
           docker build -t mlflow_server -f ./Dockerfile .
@@ -35,4 +36,3 @@ jobs:
             -e MLFLOW_S3_ENDPOINT_URL=${{ secrets.MLFLOW_S3_ENDPOINT_URL }} \
             --name mlflow \
             mlflow_server mlflow server --app-name basic-auth --host 0.0.0.0:5000 --backend-store-uri   postgresql://postgres.user:'${{ secrets.POSTGRES_PASSWORD }}'@91.165.239.121:6543/postgres --default-artifact-root s3://mlflow-artifacts
-          sudo docker ps
