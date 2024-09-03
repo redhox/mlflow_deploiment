@@ -25,7 +25,7 @@ jobs:
             git clone https://github.com/redhox/mlflow_deploiment.git .
           else
             cd mlflow
-            docker stop mlflow
+            docker stop mlflow_server
             git pull origin main
           fi
           docker build -t mlflow_server -f ./Dockerfile .
